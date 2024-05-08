@@ -5,8 +5,10 @@ export default class User extends Model {
     email!: string;
     password!: string;
     verified!: boolean;
+    verificationToken!: string | null;
   
     static tableName = 'users';
+
   }
 
   

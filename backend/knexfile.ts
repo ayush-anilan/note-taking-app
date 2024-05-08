@@ -1,3 +1,4 @@
+import { Model } from 'objection';
 import { Knex } from 'knex';
 
 const config: Knex.Config = {
@@ -16,4 +17,8 @@ const config: Knex.Config = {
   }
 };
 
-export default config;
+const knex = require('knex')(config);
+
+Model.knex(knex);
+
+export = knex;
