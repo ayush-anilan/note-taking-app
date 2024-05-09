@@ -1,18 +1,17 @@
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import User from '../models/User';
 import bcrypt from 'bcryptjs';
 import crypto from 'crypto';
 import jwt from 'jsonwebtoken';
 import * as dotenv from 'dotenv';
 import path from 'path';
-
 dotenv.config({ path: path.resolve(__dirname, '../.env') });
 import { sendVerificationEmail } from '../email';
 
 
 
 // User Register
-export const register_post = async (req: Request, res: Response) => {
+export const register_post = async (req: Request, res: Response, next: NextFunction) => {
     const { email, password } = req.body;
     try {
       // Check if user already exists
@@ -32,13 +31,13 @@ export const register_post = async (req: Request, res: Response) => {
       res.status(201).json({ message: 'User registered successfully', user: newUser });
     } catch (error) {
       console.error(error);
-      res.status(500).json({ error: 'Internal Server Error' });
+      next(error)
     }
   }
 
 
 // Verify Email Verification token
-export const verifyToken = async (req: Request, res: Response) => {
+export const verifyToken = async (req: Request, res: Response, next: NextFunction) => {
     const { token } = req.params;
     try {
       // Find user by verification token
@@ -51,11 +50,11 @@ export const verifyToken = async (req: Request, res: Response) => {
       res.status(200).json({ message: 'Email verified successfully', user });
     } catch (error) {
       console.error(error);
-      res.status(500).json({ error: 'Internal Server Error' });
+      next(error)
     }
   }
 
-export const login_post = async (req: Request, res: Response) => {
+export const login_post = async (req: Request, res: Response, next: NextFunction) => {
     const { email, password } = req.body;
     try {
       // Find user by email
@@ -77,6 +76,6 @@ export const login_post = async (req: Request, res: Response) => {
       res.status(200).json({ message: 'Login successful', token });
     } catch (error) {
       console.error(error);
-      res.status(500).json({ error: 'Internal Server Error' });
+      next(error)
     }
   };
