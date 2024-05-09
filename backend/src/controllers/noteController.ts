@@ -30,8 +30,9 @@ export const get_notes = async (req: Request, res: Response, next: NextFunction)
     const pageNumber = parseInt(page as string, 10) || 1;
     const limitNumber = parseInt(limit as string, 10) || 10;
     const offset = (pageNumber - 1) * limitNumber;
+    const userId = req.query.userId as string;
     try {
-      let query = Note.query();
+      let query = Note.query().where('userId', userId);
       if (search) {
         // Search for notes containing the search query in title or content
         query = query.where('title', 'ilike', `%${search}%`).orWhere('content', 'ilike', `%${search}%`);

@@ -26,7 +26,7 @@ export const register_post = async (req: Request, res: Response, next: NextFunct
       // Create new user
       const newUser = await User.query().insert({ email, password: hashedPassword, verificationToken });
       // Send verification email
-      const verificationLink = `http://localhost:5000/api/verify/${verificationToken}`;
+      const verificationLink = `http://localhost:5173/verify/${verificationToken}`;
       await sendVerificationEmail(email, verificationLink);
       res.status(201).json({ message: 'User registered successfully', user: newUser });
     } catch (error) {
@@ -73,7 +73,7 @@ export const login_post = async (req: Request, res: Response, next: NextFunction
       }
       // Generate JWT token
       const token = jwt.sign({ userId: user.id, email: user.email }, `${process.env.SECRET_KEY}` as string, { expiresIn: '1h' });
-      res.status(200).json({ message: 'Login successful', token });
+      res.status(200).json({ message: 'Login successful', token, user: {id: user.id} });
     } catch (error) {
       console.error(error);
       next(error)
