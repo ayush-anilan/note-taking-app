@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import routes from './routes/routes';
+import path from 'path';
 
 dotenv.config();
 
@@ -16,6 +17,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Routes
 app.use('/api', routes);
+
+app.use(express.static(path.join(__dirname, '../frontend/dist')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/dist', 'index.html'));
+});
+
 
 // Error handling middleware
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
