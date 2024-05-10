@@ -1,0 +1,21 @@
+services:
+  - name: backend
+    type: web
+    buildCommand: npm run build
+    startCommand: npm start
+    env:
+      - key: NODE_ENV
+        value: production
+    envVars:
+      - key: HOST
+        fromDatabase:
+          name: notes_nl8n
+          property: hostname
+      - key: USER
+        fromDatabase:
+          name: notes_nl8n
+          property: username
+      - key: PASSWORD
+        fromDatabase:
+          name: notes_nl8n
+          property: password
