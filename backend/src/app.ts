@@ -15,7 +15,14 @@ dotenv.config({ path: path.resolve(fileURLToPath(import.meta.url), '../.env') })
 const app: Application = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: [
+    "https://note-taking-app-1.onrender.com",
+    "http://localhost:5000"
+  ],
+  credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
