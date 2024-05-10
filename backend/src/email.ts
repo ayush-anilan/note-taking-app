@@ -6,8 +6,8 @@ dotenv.config({ path: path.resolve(fileURLToPath(import.meta.url), '../.env') })
 // Create a Nodemailer transporter
 const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
-    port: 587,
-    secure: false, // true for 465, false for other ports
+    port: 465,
+    secure: true, // true for 465, false for other ports
     auth: {
       user: `${process.env.GMAIL_USERNAME}`,
       pass: `${process.env.GMAIL_PASSWORD}`

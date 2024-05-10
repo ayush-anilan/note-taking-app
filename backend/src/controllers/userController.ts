@@ -28,7 +28,7 @@ export const register_post = async (req: Request, res: Response, next: NextFunct
       // Create new user
       const newUser = await User.query().insert({ email, password: hashedPassword, verificationToken });
       // Send verification email
-      const verificationLink = `http://localhost:5173/verify/${verificationToken}`;
+      const verificationLink = `https://note-taking-app-1.onrender.com//${verificationToken}`;
       await sendVerificationEmail(email, verificationLink);
       res.status(201).json({ message: 'User registered successfully', user: newUser });
     } catch (error) {
