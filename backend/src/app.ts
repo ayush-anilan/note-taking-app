@@ -17,7 +17,7 @@ const app: Application = express();
 // Middleware
 app.use(cors({
   origin: [
-    "http://localhost:5000",
+    "http://localhost:5173",
     "https://note-taking-app-1.onrender.com"
   ],
   credentials: true,
