@@ -8,10 +8,7 @@ dotenv.config({ path: path.resolve(fileURLToPath(import.meta.url), '../.env') })
 const config: Knex.Config = {
   client: 'pg',
   connection: {
-    host: process.env.HOST,
-    user: process.env.USER,
-    password: process.env.PASSWORD,
-    database: 'notes_nl8n'
+    connectionString: process.env.DATABASE_URL,
   },
   migrations: {
     directory: './src/database/migrations'
