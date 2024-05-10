@@ -1,12 +1,16 @@
-// backend/src/app.ts
 import express, { Application, Request, Response, NextFunction  } from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import routes from './routes/routes';
 import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
-dotenv.config();
+const __filename = fileURLToPath(import.meta.url);
+
+
+dotenv.config({ path: path.resolve(fileURLToPath(import.meta.url), '../.env') });
 
 const app: Application = express();
 
@@ -17,6 +21,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Routes
 app.use('/api', routes);
+
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 app.use(express.static(path.join(__dirname, '../frontend/dist')));
 

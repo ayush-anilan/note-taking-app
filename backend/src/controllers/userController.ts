@@ -5,7 +5,9 @@ import crypto from 'crypto';
 import jwt from 'jsonwebtoken';
 import * as dotenv from 'dotenv';
 import path from 'path';
-dotenv.config({ path: path.resolve(__dirname, '../.env') });
+import { fileURLToPath } from 'url';
+
+dotenv.config({ path: path.resolve(fileURLToPath(import.meta.url), '../.env') });
 import { sendVerificationEmail } from '../email';
 
 
