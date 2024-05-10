@@ -7,7 +7,7 @@
     "start-server": "cd backend && nodemon src/server.ts",
     "start-client": "cd frontend && npm run dev",
     "start": "cd backend && npm install && nodemon src/server.ts",
-    "build": "cd frontend && npm insatll && npm run build"
+    "build": "cd frontend && npm install && npm run build"
   },
   "keywords": [],
   "author": "",
