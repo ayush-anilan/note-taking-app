@@ -5,7 +5,9 @@ import { fileURLToPath } from 'url';
 dotenv.config({ path: path.resolve(fileURLToPath(import.meta.url), '../.env') });
 // Create a Nodemailer transporter
 const transporter = nodemailer.createTransport({
-    service: "Gmail",
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true, // true for 465, false for other ports
     auth: {
       user: process.env.GMAIL_USERNAME,
       pass: process.env.GMAIL_PASSWORD,
@@ -17,7 +19,7 @@ const transporter = nodemailer.createTransport({
 export async function sendVerificationEmail(email: string, verificationLink: string) {
     try {
       await transporter.sendMail({
-        from: `${process.env.GMAIL_USERNAME}`,
+        from: process.env.GMAIL_USERNAME,
         to: email,
         subject: 'Verify your email address',
         html: `<p>Please click <a href="${verificationLink}">here</a> to verify your email address.</p>`
