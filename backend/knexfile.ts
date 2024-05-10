@@ -1,12 +1,15 @@
 import { Model } from 'objection';
 import { Knex } from 'knex';
+import * as dotenv from 'dotenv';
+import path from 'path';
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 const config: Knex.Config = {
   client: 'pg',
   connection: {
-    host: 'localhost',
-    user: 'postgres',
-    password: 'ayushpsql',
+    host: process.env.HOST,
+    user: process.env.USER,
+    password: process.env.PASSWORD,
     database: 'notes'
   },
   migrations: {

@@ -36,23 +36,29 @@ export const register_post = async (req: Request, res: Response, next: NextFunct
   }
 
 
-// Verify Email Verification token
-export const verifyToken = async (req: Request, res: Response, next: NextFunction) => {
+  export const verifyToken = async (req: Request, res: Response, next: NextFunction) => {
     const { token } = req.params;
     try {
+      console.log("Verification token:", token);
+      
       // Find user by verification token
       const user = await User.query().findOne({ verificationToken: token });
       if (!user) {
+        console.log("Invalid verification token");
         return res.status(404).json({ error: 'Invalid verification token' });
       }
+  
       // Update user as verified
       await User.query().findById(user.id).patch({ verified: true, verificationToken: null });
+      console.log("User verified successfully");
       res.status(200).json({ message: 'Email verified successfully', user });
     } catch (error) {
       console.error(error);
-      next(error)
+      next(error);
     }
   }
+  
+
 
 export const login_post = async (req: Request, res: Response, next: NextFunction) => {
     const { email, password } = req.body;
