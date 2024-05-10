@@ -11,7 +11,7 @@ const config: Knex.Config = {
     host: process.env.HOST,
     user: process.env.USER,
     password: process.env.PASSWORD,
-    database: 'notes'
+    database: 'notes_nl8n'
   },
   migrations: {
     directory: './src/database/migrations'
