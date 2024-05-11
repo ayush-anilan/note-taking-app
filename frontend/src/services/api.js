@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const api = axios.create({
-  baseURL: process.env.AXIOS_API_URL,
+  baseURL: import.meta.env.AXIOS_API_URL,
   headers: {
     "Content-Type": "application/json",
   },
