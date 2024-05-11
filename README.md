@@ -67,7 +67,9 @@ Make sure you have Node.js and MongoDB installed on your local machine.
    npm run start-server
 2. Start the frontend development server:
    ```bash
+   cd frontend
    npm install vite --save-dev
+   cd ..
    npm run start-client
    
 3. Open your browser and go to http://localhost:3000 to see the application's backend running.
