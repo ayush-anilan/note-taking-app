@@ -5,7 +5,7 @@ import { fileURLToPath } from 'url';
 dotenv.config({ path: path.resolve(fileURLToPath(import.meta.url), '../.env') });
 // Create a Nodemailer transporter
 const transporter = nodemailer.createTransport({
-    host: 'gmail',
+    host: 'Gmail',
     auth: {
       user: process.env.GMAIL_USERNAME,
       pass: process.env.GMAIL_PASSWORD,
