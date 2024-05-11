@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const api = axios.create({
-  baseURL: import.meta.env.AXIOS_API_URL,
+  baseURL: "https://note-taking-app-1.onrender.com/api",
   headers: {
     "Content-Type": "application/json",
   },
