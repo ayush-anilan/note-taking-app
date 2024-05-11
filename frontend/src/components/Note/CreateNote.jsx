@@ -6,6 +6,7 @@ import Navbar from '../Navbar';
 const CreateNote = () => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
+    const [error, setError] = useState(null);
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -20,7 +21,7 @@ const CreateNote = () => {
             });
             navigate("/notes")
         } catch (err) {
-            console.error(err);
+            setError(err.response.data.error)
         }
     };
 
@@ -58,6 +59,7 @@ const CreateNote = () => {
                             <button type="submit" className='w-full  rounded-3xl p-2 bg-[#D1510A]  text-white font-semibold'>Save</button>
                         </div>
                     </form>
+                    {error && <p style={{ color: 'red' }}>{error}</p>}
                 </div>
             </div>
 

@@ -61,9 +61,9 @@ const Register = () => {
                         <div>
                             <button type="submit" className='w-full  rounded-3xl p-2 bg-[#D1510A]  text-white font-semibold'>Register</button>
                         </div>
-                        {loading && <p>Sending Verification Email...</p>}
-                        {message && <p style={{ color: 'green' }}>{message}</p>}
                     </form>
+                    {loading && <p>Sending Verification Email...</p>}
+                    {message && <p style={{ color: 'green' }}>{message}</p>}
                     {error && <p style={{ color: 'red' }}>{error}</p>}
                     <p>
                         Already have an account? <Link to="/login">Login</Link>

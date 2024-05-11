@@ -10,6 +10,7 @@ const NoteList = () => {
     const [pageSize, setPageSize] = useState(10);
     const [totalPages, setTotalPages] = useState(1);
     const userId = localStorage.getItem('userId');
+    const [error, setError] = useState(null);
     const { id } = useParams();
     const navigate = useNavigate();
     const location = useLocation();
@@ -49,7 +50,7 @@ const NoteList = () => {
             const currentPage = parseInt(params.get('page')) || 1;
             fetchNotes(currentPage);
         } catch (err) {
-            console.error(err);
+            setError(err.response.data.error)
         }
     };
 
@@ -79,6 +80,7 @@ const NoteList = () => {
                         <Link to="/notes/create" className='w-full  rounded-3xl px-5 py-3 bg-[#D1510A]  text-white font-semibold'>Add Note</Link>
                     </div>
                 </div>
+                {error && <p style={{ color: 'red' }}>{error}</p>}
                 {notes.length === 0 ? (
                     <div className=" text-gray-500  text-3xl flex justify-center items-center  h-96">No notes found.</div>
                 ) : (
