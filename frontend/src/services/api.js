@@ -1,9 +1,10 @@
 import axios from "axios";
-import dotenv from "dotenv";
-dotenv.config();
 
 const api = axios.create({
-  baseURL: "https://note-taking-app-1.onrender.com/api",
+  baseURL:
+    import.meta.env.VITE_NODE_ENV === "development"
+      ? "http://localhost:3000/api"
+      : import.meta.env.VITE_API_URL,
   headers: {
     "Content-Type": "application/json",
   },
